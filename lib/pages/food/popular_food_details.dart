@@ -57,7 +57,12 @@ class PopularFoodDetail extends StatelessWidget {
                   ),
                   color: Colors.white,
                 ),
-                  child: const AppColumn(text: "Biryani",)
+                  child:  Column(
+                    children: [
+                      AppColumn(text: "Biryani",),
+                      BigText(text: "Introduce")
+                    ],
+                  )
               ))
         ],
       ),
