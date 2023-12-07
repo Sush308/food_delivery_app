@@ -68,15 +68,20 @@ class PopularFoodDetail extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AppColumn(
+                      const AppColumn(
                         text: "Biryani",
                       ),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
                       BigText(text: "Introduce"),
-                      //xpandableTextWidget(text: "Sushil")
-                      ExpandableTextWidget(text: "I see that you've made the suggested corrections to the code. However, upon closer inspection, I noticed that there is still a small issue. The calculation of secondHalf in the initState method has an off-by-one error.")
+                       const Expanded(
+                         child: SingleChildScrollView(
+                           child: ExpandableTextWidget(
+                              text:
+                                  "Biryani is a spiced mix of meat and rice, traditionally cooked over an open fire in a leather pot. It is combined in different ways with a variety of components to create a number of highly tasty and unique flavor combinations. The word “biryani” itself comes from the word “birian,” a Persian term which translates to “fried before cooking.” Indeed, the roots of this dish have been traced by notable historians to modern day Persia, with appearances in notes under various names as early as 2 CE. The biryani recipe was then much simplified in order to keep it viable during travel.Once the dish reached India, it blossomed into something entirely new. The story goes that Mumtaz Mahal, a Queen of Shah Jahan, visited an army barrack and found the soldiers there to be heavily undernourished. She demanded the barrack’s cook provide the soldiers with a dish that was nutritious and had all the meat, rice, and spices needed to restore their energy. According to legend, this is how the dish first came to India. As various regions across Southern Asia adopted the recipe, it grew and changed to express cultures’ values leading to the diverse selection of biryani dishes that exist today."),
+                         ),
+                       )
                     ],
                   ))),
         ],
