@@ -19,7 +19,7 @@ class FoodPageBody extends StatefulWidget {
 
 class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.85);
-  var _currPageValue = 0.0;
+  double _currPageValue = 0.0;
   double _scaleFactor = 0.8;
   double _height = Dimensions.pageViewContainer;
 
@@ -56,7 +56,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         ),
         DotsIndicator(
           dotsCount: 5,
-          position: _currPageValue,
+          position: _currPageValue.toInt(),
           decorator: DotsDecorator(
             size: const Size.square(9.0),
             activeSize: const Size(18.0, 9.0),

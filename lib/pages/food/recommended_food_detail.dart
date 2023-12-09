@@ -25,7 +25,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               ],
             ),
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(20),
+              preferredSize: Size.fromHeight(30),
               child: Container(
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
@@ -45,7 +45,7 @@ class RecommendedFoodDetail extends StatelessWidget {
             ),
             pinned: true,
             backgroundColor: AppColors.yellowColor,
-            expandedHeight: 300,
+            expandedHeight: 350,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
                 "assets/images/food3.jpg",
