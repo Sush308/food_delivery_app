@@ -9,24 +9,28 @@ import 'icon_and_text_widgets.dart';
 
 class AppColumn extends StatelessWidget {
   final String text;
-  const AppColumn({super.key, required this.text, });
+  const AppColumn({
+    super.key,
+    required this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        BigText(text: text, size: Dimensions.font26,),
+        BigText(
+          text: text,
+          size: Dimensions.font26,
+        ),
         SizedBox(
           height: Dimensions.height10,
         ),
         Row(
           children: [
             Wrap(
-                children: List.generate(
-                    5,
-                        (index) =>  Icon(Icons.star,
-                        color: AppColors.mainColor))),
+                children: List.generate(5,
+                    (index) => Icon(Icons.star, color: AppColors.mainColor))),
             SizedBox(
               width: Dimensions.width5,
             ),
@@ -42,7 +46,7 @@ class AppColumn extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: Dimensions.height20,
+          height: Dimensions.height10,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

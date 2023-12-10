@@ -4,17 +4,20 @@ import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/app_column.dart';
 import 'package:food_delivery_app/widgets/app_icon.dart';
 import 'package:food_delivery_app/widgets/expandable_text_widget.dart';
+import 'package:get/get.dart';
 
 import '../../utils/colors.dart';
 import '../../widgets/big_text.dart';
 import '../../widgets/icon_and_text_widgets.dart';
 import '../../widgets/small_text.dart';
+import '../home/main_food_page.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   const PopularFoodDetail({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     print("Screen height " + MediaQuery.of(context).size.height.toString());
     // print("Current height is " + MediaQuery.of(context).size.height.toString());
     return Scaffold(
@@ -40,10 +43,14 @@ class PopularFoodDetail extends StatelessWidget {
               top: Dimensions.height45,
               left: Dimensions.width20,
               right: Dimensions.width20,
-              child: const Row(
+              child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppIcon(icon: Icons.arrow_back),
+                  GestureDetector(
+                      child: AppIcon(icon: Icons.arrow_back),
+                  onTap: (){
+                        Get.to(()=>MainFoodPage());
+                  }),
                   AppIcon(icon: Icons.shopping_cart_checkout_outlined),
                 ],
               )),
