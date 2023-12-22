@@ -17,8 +17,8 @@ class MainFoodPage extends StatefulWidget {
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
-    print("Current height is " + MediaQuery.of(context).size.height.toString());//843.4285714285714
-    print("Current width is " + MediaQuery.of(context).size.width.toString());  //411.42857142857144
+    // print("Current height is " + MediaQuery.of(context).size.height.toString());//843.4285714285714
+    // print("Current width is " + MediaQuery.of(context).size.width.toString());  //411.42857142857144
     return Scaffold(
       body: Column(
         children: [

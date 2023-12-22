@@ -1,39 +1,44 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/controllers/recommended_product_controller.dart';
+import 'package:food_delivery_app/routes/routes_helper.dart';
+import 'package:food_delivery_app/utils/app_constants.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/widgets/app_icon.dart';
 import 'package:food_delivery_app/widgets/expandable_text_widget.dart';
-
+import 'package:get/get.dart';
 import '../../utils/dimensions.dart';
 import '../../widgets/big_text.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  final int pageId;
+  const RecommendedFoodDetail({super.key, required this.pageId});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
+    var product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 70,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
-                AppIcon(icon: Icons.shopping_cart_outlined)
+                GestureDetector(
+                    child: const AppIcon(icon: Icons.clear),
+                  onTap: (){
+                      Get.toNamed(RoutesHelper.getInitial());
+                  },
+                ),
+                const AppIcon(icon: Icons.shopping_cart_outlined)
               ],
             ),
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(30),
+              preferredSize: const Size.fromHeight(30),
               child: Container(
                 width: double.maxFinite,
-                padding: EdgeInsets.only(top: 5, bottom: 10),
-                child: Center(
-                    child: BigText(
-                  text: 'Indian food',
-                  size: Dimensions.font26,
-                )),
+                padding: const EdgeInsets.only(top: 5, bottom: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Dimensions.radius20),
@@ -41,14 +46,19 @@ class RecommendedFoodDetail extends StatelessWidget {
                   ),
                   color: Colors.white,
                 ),
+                child: Center(
+                    child: BigText(
+                  text: product.name!,
+                  size: Dimensions.font26,
+                )),
               ),
             ),
             pinned: true,
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 350,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/images/food3.jpg",
+              background: Image.network(
+                AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -58,13 +68,12 @@ class RecommendedFoodDetail extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  child: ExpandableTextWidget(
-                      text:
-                          "Biryani is a spiced mix of meat and rice, traditionally cooked over an open fire in a leather pot. It is combined in different ways with a variety of components to create a number of highly tasty and unique flavor combinations. The word “biryani” itself comes from the word “birian,” a Persian term which translates to “fried before cooking.” Indeed, the roots of this dish have been traced by notable historians to modern day Persia, with appearances in notes under various names as early as 2 CE. The biryani recipe was then much simplified in order to keep it viable during travel.Once the dish reached India, it blossomed into something entirely new. The story goes that Mumtaz Mahal, a Queen of Shah Jahan, visited an army barrack and found the soldiers there to be heavily undernourished. She demanded the barrack’s cook provide the soldiers with a dish that was nutritious and had all the meat, rice, and spices needed to restore their energy. According to legend, this is how the dish first came to India. As various regions across Southern Asia adopted the recipe, it grew and changed to express cultures’ values leading to the diverse selection of biryani dishes that exist today. Biryani is a spiced mix of meat and rice, traditionally cooked over an open fire in a leather pot. It is combined in different ways with a variety of components to create a number of highly tasty and unique flavor combinations. The word “biryani” itself comes from the word “birian,” a Persian term which translates to “fried before cooking.” Indeed, the roots of this dish have been traced by notable historians to modern day Persia, with appearances in notes under various names as early as 2 CE. The biryani recipe was then much simplified in order to keep it viable during travel.Once the dish reached India, it blossomed into something entirely new. The story goes that Mumtaz Mahal, a Queen of Shah Jahan, visited an army barrack and found the soldiers there to be heavily undernourished. She demanded the barrack’s cook provide the soldiers with a dish that was nutritious and had all the meat, rice, and spices needed to restore their energy. According to legend, this is how the dish first came to India. As various regions across Southern Asia adopted the recipe, it grew and changed to express cultures’ values leading to the diverse selection of biryani dishes that exist today."),
                   margin: EdgeInsets.only(
                       left: Dimensions.width30, right: Dimensions.width30),
-                ),
-              ],
+                  child:  ExpandableTextWidget(
+                      text: product.description!,
+                          ),
+                )],
             ),
           ),
         ],
@@ -87,7 +96,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     iconColor: Colors.white,
                     backgroundColor: AppColors.mainColor,
                     icon: Icons.remove),
-                BigText(text: "\$112.88 " + " X " + " 0 ",
+                BigText(text: "\₹ ${product.price!} X  0 ",
                 color: AppColors.mainBlackColor,
                 size: Dimensions.font26,),
                 AppIcon(
