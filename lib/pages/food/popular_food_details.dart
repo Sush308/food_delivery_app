@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/controllers/cart_controller.dart';
 import 'package:food_delivery_app/utils/app_constants.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/app_column.dart';
@@ -21,6 +22,7 @@ class PopularFoodDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var product = Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
     //print("Page id id " + pageId.toString());
     //print("Product name " + product.name.toString());
     // print("Screen height " + MediaQuery.of(context).size.height.toString());
@@ -165,9 +167,14 @@ class PopularFoodDetail extends StatelessWidget {
                     bottom: Dimensions.height15,
                     right: Dimensions.width15,
                     left: Dimensions.width15),
-                child: BigText(
-                  text: "\₹ ${product.price!} | Add to Cart",
-                  color: Colors.white,
+                child: GestureDetector(
+                  onTap: (){
+                    popularProduct.addItem(product);
+                  },
+                  child: BigText(
+                    text: "\₹ ${product.price!} | Add to Cart",
+                    color: Colors.white,
+                  ),
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius20),

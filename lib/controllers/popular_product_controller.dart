@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/controllers/cart_controller.dart';
 import 'package:food_delivery_app/data/repository/popular_product_repo.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:get/get.dart';
@@ -11,12 +12,16 @@ class PopularProductController extends GetxController{
 });
   List<dynamic> _popularProductList = [];
   List<dynamic> get popularProductList => _popularProductList;
+  late CartController _cart;
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
   int _quantity = 0;
   int get quantity => _quantity;
+
+  int _inCartItems = 0;
+  int get inCartItems => _inCartItems + _quantity;
 
   Future<void> getPopularProductList()async {
     Response response = await popularProductRepo.getPopularProductList();
@@ -59,5 +64,15 @@ class PopularProductController extends GetxController{
     }else{
       return quantity;
     }
+  }
+
+  void initProduct(CartController cart){
+    _quantity = 0;
+    _inCartItems = 0;
+    _cart = cart;
+  }
+
+  void addItem(ProductsModel product){
+_cart.addItem(product, _quantity);
   }
 }
